@@ -10,10 +10,11 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        configureNavigationBar()
+
         return true
     }
 
@@ -32,5 +33,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    // MARK: - UINavigationBar appearance
+
+    private func configureNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.titleTextAttributes = Appearance.NavigationBar.titleTextAttributes
+        appearance.largeTitleTextAttributes = Appearance.NavigationBar.largeTitleTextAttributes
+        appearance.backgroundColor = Assets.Colors.navigationBarBackground.color
+
+        UINavigationBar.appearance().backIndicatorImage = Assets.Images.backButton.image
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = Assets.Images.backButton.image
+        UINavigationBar.appearance().tintColor = Assets.Colors.darkGreySocialWhite.color
+        UINavigationBar.appearance().backItem?.title = ""
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(
+            Appearance.BarButtonItem.backButtonTitlePositionAdjustment,
+            for: .default
+        )
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
 }
 

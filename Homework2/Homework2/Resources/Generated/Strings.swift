@@ -26,6 +26,8 @@ internal enum Text {
     internal static let pinned = Text.tr("Localizable", "Messages.pinned")
     /// Who do you want to chat with?
     internal static let searchBarPlaceholder = Text.tr("Localizable", "Messages.searchBarPlaceholder")
+    /// MESSAGES
+    internal static let title = Text.tr("Localizable", "Messages.title")
   }
 
   internal enum Profile {
