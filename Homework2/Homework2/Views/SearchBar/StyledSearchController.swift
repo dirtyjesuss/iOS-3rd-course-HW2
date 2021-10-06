@@ -14,7 +14,7 @@ final class StyledSearchController: UISearchController {
     private enum Constants {
         static let placeholderAttributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: Assets.Colors.searchPlaceholder.color,
-            .font: Fonts.Habibi.regular.font(size: 17)
+            .font: UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.Habibi.regular.font(size: 17))
         ]
     }
 

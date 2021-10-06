@@ -30,7 +30,7 @@ final class PinnedTableViewCell: UITableViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.titleLabelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.titleLabelFont)
         label.text = Text.Messages.pinned
         label.textColor = Assets.Colors.blackLighterGrey.color
         label.translatesAutoresizingMaskIntoConstraints = false

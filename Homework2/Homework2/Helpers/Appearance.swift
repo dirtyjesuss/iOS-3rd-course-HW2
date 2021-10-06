@@ -11,12 +11,12 @@ class Appearance {
 
     enum NavigationBar {
         static let largeTitleTextAttributes: [NSAttributedString.Key: Any] = [
-            .font: Fonts.Habibi.regular.font(size: 34),
+            .font: UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.Habibi.regular.font(size: 34)),
             .foregroundColor: Assets.Colors.blackWhite.color
         ]
 
         static let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            .font: Fonts.Habibi.regular.font(size: 17),
+            .font: UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.Habibi.regular.font(size: 17)),
             .foregroundColor: Assets.Colors.blackSocialWhite.color
         ]
 
@@ -27,7 +27,7 @@ class Appearance {
 
     enum NavigationItem {
         static let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            .font: Fonts.Habibi.regular.font(size: 17),
+            .font: UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.Habibi.regular.font(size: 17)),
             .foregroundColor: Assets.Colors.blackSocialWhite.color
         ]
     }
