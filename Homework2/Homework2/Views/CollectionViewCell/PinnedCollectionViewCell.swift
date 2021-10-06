@@ -35,7 +35,7 @@ final class PinnedCollectionViewCell: UICollectionViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.titleLabelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.titleLabelFont)
         label.textColor = Assets.Colors.blackWhite.color
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -29,7 +29,7 @@ final class ChatTableViewCell: UITableViewCell {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.labelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
         label.textColor = Assets.Colors.darkGreySocialWhite.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +37,7 @@ final class ChatTableViewCell: UITableViewCell {
 
     private let subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.labelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
         label.textColor = Assets.Colors.lighterGreyWhite.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -53,7 +53,7 @@ final class ChatTableViewCell: UITableViewCell {
 
     private let rightLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.rightLabelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.rightLabelFont)
         label.textColor = Assets.Colors.blackLighterGrey.color
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -101,14 +101,16 @@ final class ChatTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             textStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentInset),
             textStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.contentInset),
-            textStackView.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor, constant: -Constants.contentInset),
+            textStackView.trailingAnchor.constraint(equalTo: rightLabel.leadingAnchor, constant: -Constants.contentInset),
             roundedImageView.widthAnchor.constraint(equalToConstant: Constants.roundedImageViewSize),
             roundedImageView.heightAnchor.constraint(equalToConstant: Constants.roundedImageViewSize),
             roundedImageView.centerYAnchor.constraint(equalTo: textStackView.centerYAnchor),
             roundedImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.contentInset),
             roundedImageView.trailingAnchor.constraint(equalTo: textStackView.leadingAnchor, constant: -Constants.roundedImageHorizontalOffset),
             rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentInset),
-            rightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.contentInset),
+            rightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.contentInset)
         ])
+
+        rightLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
 }

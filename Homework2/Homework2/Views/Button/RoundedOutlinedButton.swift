@@ -14,7 +14,7 @@ final class RoundedOutlinedButton: UIButton {
     private enum Constants {
         static let borderWidth: CGFloat = 1
         static let titleAttributes: [NSAttributedString.Key: Any] = [
-            .font: Fonts.Habibi.regular.font(size: 14),
+            .font: UIFontMetrics(forTextStyle: .body).scaledFont(for: Fonts.Habibi.regular.font(size: 14)),
             .foregroundColor: Assets.Colors.blackWhite.color
         ]
 

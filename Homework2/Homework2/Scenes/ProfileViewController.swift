@@ -25,7 +25,7 @@ final class ProfileViewController: UIViewController {
 
     private let locationLabel: UILabel = {
         let label = UILabel()
-        label.font = Constants.labelFont
+        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
