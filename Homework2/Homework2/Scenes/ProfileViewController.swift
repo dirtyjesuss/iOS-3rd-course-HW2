@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ProfileViewController: UIViewController {
 
@@ -26,14 +27,12 @@ final class ProfileViewController: UIViewController {
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     private let logoutButton: RoundedOutlinedButton = {
         let button = RoundedOutlinedButton(frame: .zero)
         button.setTitle(Text.Profile.logout, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -61,17 +60,17 @@ final class ProfileViewController: UIViewController {
         view.addSubview(locationLabel)
         view.addSubview(logoutButton)
 
-        NSLayoutConstraint.activate([
-            locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.locationLabelLeadingOffset),
-            locationLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.locationLabelTopOffset)
-        ])
+        locationLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.locationLabelLeadingOffset)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(Constants.locationLabelTopOffset)
+        }
 
-        NSLayoutConstraint.activate([
-            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoutButton.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: Constants.logoutButtonTopOffset),
-            logoutButton.widthAnchor.constraint(equalToConstant: Constants.logoutButtonWidth),
-            logoutButton.heightAnchor.constraint(equalToConstant: Constants.logoutButtonHeight)
-        ])
+        logoutButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(locationLabel.snp.bottom).offset(Constants.logoutButtonTopOffset)
+            make.width.equalTo(Constants.logoutButtonWidth)
+            make.height.equalTo(Constants.logoutButtonHeight)
+        }
     }
 
     private func showLargeTitle() {

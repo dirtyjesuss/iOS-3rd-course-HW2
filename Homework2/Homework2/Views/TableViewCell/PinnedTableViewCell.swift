@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class PinnedTableViewCell: UITableViewCell {
 
@@ -88,15 +89,17 @@ final class PinnedTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(collectionView)
 
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.titleLabelTopOffset),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.titleLabelLeadingOffset),
-            collectionView.heightAnchor.constraint(equalToConstant: Constants.collectionViewHeight),
-            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.collectionViewTopOffset),
-            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.collectionViewHorizontalInset),
-            collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.collectionViewHorizontalInset),
-            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: Constants.collectionViewBottomOffset)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.titleLabelTopOffset)
+            make.leading.equalToSuperview().offset(Constants.titleLabelLeadingOffset)
+        }
+
+        collectionView.snp.makeConstraints { make in
+            make.height.equalTo(Constants.collectionViewHeight)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Constants.collectionViewTopOffset)
+            make.leading.trailing.equalToSuperview().inset(Constants.collectionViewHorizontalInset)
+            make.bottom.equalToSuperview().offset(Constants.collectionViewBottomOffset)
+        }
     }
 }
 
