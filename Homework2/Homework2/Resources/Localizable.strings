@@ -1,0 +1,9 @@
+Common.messages = "Messages";
+
+Profile.logout = "Logout";
+
+Messages.searchBarPlaceholder = "Who do you want to chat with?";
+Messages.pinned = "PINNED";
+Messages.title = "MESSAGES";
+
+Chat.textFiledPlaceholder = "Type your message here...";
