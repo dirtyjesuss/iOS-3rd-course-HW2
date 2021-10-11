@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class ChatTableViewCell: UITableViewCell {
 
@@ -31,7 +32,6 @@ final class ChatTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
         label.textColor = Assets.Colors.darkGreySocialWhite.color
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -39,7 +39,6 @@ final class ChatTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.labelFont)
         label.textColor = Assets.Colors.lighterGreyWhite.color
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -47,7 +46,6 @@ final class ChatTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = Constants.roundedImageCornerRadius
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -55,7 +53,6 @@ final class ChatTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: Constants.rightLabelFont)
         label.textColor = Assets.Colors.blackLighterGrey.color
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -98,18 +95,23 @@ final class ChatTableViewCell: UITableViewCell {
         contentView.addSubview(textStackView)
         contentView.addSubview(rightLabel)
 
-        NSLayoutConstraint.activate([
-            textStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentInset),
-            textStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.contentInset),
-            textStackView.trailingAnchor.constraint(equalTo: rightLabel.leadingAnchor, constant: -Constants.contentInset),
-            roundedImageView.widthAnchor.constraint(equalToConstant: Constants.roundedImageViewSize),
-            roundedImageView.heightAnchor.constraint(equalToConstant: Constants.roundedImageViewSize),
-            roundedImageView.centerYAnchor.constraint(equalTo: textStackView.centerYAnchor),
-            roundedImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.contentInset),
-            roundedImageView.trailingAnchor.constraint(equalTo: textStackView.leadingAnchor, constant: -Constants.roundedImageHorizontalOffset),
-            rightLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.contentInset),
-            rightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.contentInset)
-        ])
+        textStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.contentInset)
+            make.trailing.equalTo(rightLabel.snp.leading).offset(-Constants.contentInset)
+            make.bottom.equalToSuperview().offset(-Constants.contentInset)
+        }
+
+        roundedImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(Constants.roundedImageViewSize)
+            make.centerY.equalTo(textStackView)
+            make.leading.equalToSuperview().offset(Constants.contentInset)
+            make.trailing.equalTo(textStackView.snp.leading).offset(-Constants.roundedImageHorizontalOffset)
+        }
+
+        rightLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.contentInset)
+            make.trailing.equalToSuperview().offset(-Constants.contentInset)
+        }
 
         rightLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }

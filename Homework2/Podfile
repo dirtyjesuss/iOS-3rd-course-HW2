@@ -7,4 +7,5 @@ target 'Homework2' do
 
   # Pods for Homework2
   pod 'SwiftGen', '~> 6.0'
+  pod 'SnapKit', '~> 5.0.0'
 end

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class PinnedCollectionViewCell: UICollectionViewCell {
 
@@ -67,16 +68,16 @@ final class PinnedCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(roundedImageView)
         contentView.addSubview(titleLabel)
 
-        NSLayoutConstraint.activate([
-            roundedImageView.widthAnchor.constraint(equalToConstant: Constants.roundedImageSize),
-            roundedImageView.heightAnchor.constraint(equalToConstant: Constants.roundedImageSize),
-            roundedImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            roundedImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.contentHorizontalInset),
-            roundedImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.contentHorizontalInset),
-            titleLabel.topAnchor.constraint(equalTo: roundedImageView.bottomAnchor, constant: Constants.titleLabelTopOffset),
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.contentHorizontalInset),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.contentHorizontalInset),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ])
+        roundedImageView.snp.makeConstraints { make in
+            make.width.height.equalTo(Constants.roundedImageSize)
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(Constants.contentHorizontalInset)
+        }
+
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(roundedImageView.snp.bottom).offset(Constants.titleLabelTopOffset)
+            make.leading.trailing.equalToSuperview().inset(Constants.contentHorizontalInset)
+            make.bottom.equalToSuperview()
+        }
     }
 }

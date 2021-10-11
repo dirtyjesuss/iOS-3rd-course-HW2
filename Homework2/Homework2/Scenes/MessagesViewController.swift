@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MessagesViewController: UIViewController {
 
@@ -74,15 +75,11 @@ final class MessagesViewController: UIViewController {
     }
 
     private func setupSubviews() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
 
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     private func setupNavigationItem() {
